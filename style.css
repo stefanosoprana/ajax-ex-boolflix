@@ -8,6 +8,10 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-.movie ul {
+.movie ul{
   margin: 20px;
+}
+
+.active {
+  display: none;
 }
