@@ -20,7 +20,7 @@ $(document).ready(function(){
 
           var voto_film = film.vote_average;
 
-          var arrotondamento = Math.round(voto_film / 2);
+          var arrotondamento = Math.ceil(voto_film / 2);
 
           var source   = $('#movie-template').html()
           var template = Handlebars.compile(source);
@@ -29,7 +29,7 @@ $(document).ready(function(){
             title: film.title,
             original_title: film.original_title,
             language: film.original_language,
-            rating: arrotondamento,
+            rating: starRate(arrotondamento),
           };
           var html = template(context);
 
@@ -40,11 +40,27 @@ $(document).ready(function(){
         alert('si è verificato un errore')
       }
     });
-
-    // var star = $('li').html('<i class="fas fa-star"></i>' * arrotondamento)
-    //
-    // console.log(star);
-
   });
+
+  function starRate(counter){
+
+    var star = '';
+
+    var diff = 5 - counter;
+
+    for (var i = 0; i < counter; i++) {
+
+      star += '<i class="fas fa-star"></i>';
+
+    };
+
+    for (var i = 0; i < diff; i++) {
+
+      star += '<i class="far fa-star"></i>';
+
+    };
+
+    return star
+  };
 
 });
