@@ -1,9 +1,9 @@
 $(document).ready(function(){
 
   $('button').click(function(){
-    var input = $('input').val()
+    var input = $('input').val();
 
-    $('.movie').html('')
+    $('.movie').html('');
 
     $.ajax({
       url: 'https://api.themoviedb.org/3/search/movie',
@@ -17,13 +17,16 @@ $(document).ready(function(){
         var raccoltaFilm = data.results;
         console.log(raccoltaFilm);
         for (var i = 0; i < raccoltaFilm.length; i++) {
-
           var film = raccoltaFilm[i];
 
-          var source = $('#movie-template').html()
+          var locandina = film.poster_path;
+          var riserva = film.backdrop_path;
+
+          var source = $('#movie-template').html();
           var template = Handlebars.compile(source);
 
           var context = {
+            poster: poster(locandina, riserva),
             title: film.title,
             original_title: film.original_title,
             language: flag(film.original_language),
@@ -31,19 +34,12 @@ $(document).ready(function(){
           };
           var html = template(context);
 
-          $('.movie').append(html)
-
-          // var titolo = film.title;
-          // console.log(titolo);
-          // var titolo_originale = film.original_title;
-          // console.log(titolo_originale);
-          //
-          // doubleTitle(titolo, titolo_originale);
+          $('.movie').append(html);
 
         }
       },
       error: function(){
-        alert('si è verificato un errore')
+        alert('si è verificato un errore');
       }
     });
 
@@ -61,12 +57,14 @@ $(document).ready(function(){
         for (var i = 0; i < raccoltaTv.length; i++) {
           var serieTv = raccoltaTv[i];
 
-          // doubleTitle(serieTv.name, serieTv.original_name);
+          var locandina = serieTv.poster_path;
+          var riserva = serieTv.backdrop_path;
 
-          var source = $('#movie-template').html()
+          var source = $('#movie-template').html();
           var template = Handlebars.compile(source);
 
           var context = {
+            poster: poster(locandina, riserva),
             title: serieTv.name,
             original_title: serieTv.original_name,
             language: flag(serieTv.original_language),
@@ -74,23 +72,17 @@ $(document).ready(function(){
           };
           var html = template(context);
 
-          $('.movie').append(html)
+          $('.movie').append(html);
         }
       },
       error: function(){
-        alert('si è verificato un errore')
+        alert('si è verificato un errore');
       }
     });
 
     $('input').val('');
 
   });
-
-  // function doubleTitle(titolo,titolo_originale) {
-  //   if (titolo == titolo_originale) {
-  //     $('.titolo_originale').addClass('active')
-  //   };
-  // }
 
   function starRate(counter){
 
@@ -133,6 +125,18 @@ $(document).ready(function(){
 
     return language
 
+  };
+
+  function poster(locandina, riserva){
+
+    if (locandina == null ) {
+      var image = '<img src="https://image.tmdb.org/t/p/w185' + riserva + '">'
+    }
+    else {
+      var image = '<img src="https://image.tmdb.org/t/p/w185' + locandina + '">'
+    }
+
+    return image
   };
 
 });
