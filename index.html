@@ -12,19 +12,33 @@
   </head>
   <body>
     <div class="container">
-      <input type="text">
-      <button>Search</button>
-      <div class="movie">
+      <div class="header">
+        <div class="logo">
+          Boolflix
+        </div>
+        <div class="search_bar">
+          <input type="text" placeholder="Inserisci un film o una serieTv">
+          <button>Cerca</button>
+        </div>
+      </div>
+      <div class="main">
       </div>
     </div>
     <script id="movie-template" type="text/x-handlebars-template">
-      <ul>
-        <li>{{{poster}}}</li>
-        <li>Titolo: {{title}}</li>
-        <li>Titolo Originale: {{original_title}}</li>
-        <li>Lingua: {{{language}}}</li>
-        <li>Voto: {{{rating}}}</li>
-      </ul>
+      <div class="movie">
+        <div class="poster">
+          {{{poster}}}
+        </div>
+        <div class="review">
+          <ul>
+            <li class="title">{{title}}</li>
+            <li><span>Titolo Originale:</span><br> {{original_title}}</li>
+            <li><span>Lingua:</span> {{{language}}}</li>
+            <li><span>Voto:</span> {{{rating}}}</li>
+            <li><span>Trama:</span><br> {{{overview}}}</li>
+          </ul>
+        </div>
+      </div>
     </script>
     <script src="main.js" charset="utf-8"></script>
   </body>

@@ -3,14 +3,14 @@ $(document).ready(function(){
   $('button').click(function(){
     var input = $('input').val();
 
-    $('.movie').html('');
+    $('.main').html('');
 
     $.ajax({
       url: 'https://api.themoviedb.org/3/search/movie',
       data: {
         api_key: '34da49db03cff40a92cb2b8f356c68fe',
         language: 'it',
-        query: input
+        query: input,
       },
       method: 'GET',
       success: function(data){
@@ -31,10 +31,11 @@ $(document).ready(function(){
             original_title: film.original_title,
             language: flag(film.original_language),
             rating: starRate(film.vote_average),
+            overview: film.overview,
           };
           var html = template(context);
 
-          $('.movie').append(html);
+          $('.main').append(html);
 
         }
       },
@@ -48,7 +49,7 @@ $(document).ready(function(){
       data: {
         api_key: '34da49db03cff40a92cb2b8f356c68fe',
         language: 'it',
-        query: input
+        query: input,
       },
       method: 'GET',
       success: function(data){
@@ -69,10 +70,11 @@ $(document).ready(function(){
             original_title: serieTv.original_name,
             language: flag(serieTv.original_language),
             rating: starRate(serieTv.vote_average),
+            overview: serieTv.overview,
           };
           var html = template(context);
 
-          $('.movie').append(html);
+          $('.main').append(html);
         }
       },
       error: function(){
@@ -130,10 +132,10 @@ $(document).ready(function(){
   function poster(locandina, riserva){
 
     if (locandina == null ) {
-      var image = '<img src="https://image.tmdb.org/t/p/w185' + riserva + '">'
+      var image = '<img src="https://image.tmdb.org/t/p/w342' + riserva + '">'
     }
     else {
-      var image = '<img src="https://image.tmdb.org/t/p/w185' + locandina + '">'
+      var image = '<img src="https://image.tmdb.org/t/p/w342' + locandina + '">'
     }
 
     return image

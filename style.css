@@ -8,10 +8,112 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-.movie ul{
-  margin: 20px;
+.container {
+  width: 100%;
+  height: 100vh;
+  background: grey;
+  overflow: hidden;
 }
 
-.active {
-  display: none;
+.header {
+  width: 100%;
+  height: 80px;
+  background: black
+}
+
+.logo {
+  float: left;
+  margin-left: 50px;
+  color: red;
+  font-size: 45px;
+  line-height: 80px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.search_bar {
+  float: right;
+  line-height: 80px;
+  margin-right: 100px;
+}
+
+input, button {
+  padding: 10px;
+}
+
+input {
+  width: 180px;
+  outline: none;
+  border: 1px solid grey;
+}
+
+button {
+  outline: none;
+  background: #333333;
+  color: #d9d9d9;
+  border-radius: 2px;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  height: calc(100vh - 80px);
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: #333333;
+}
+
+/* TEMPLATE */
+
+.movie {
+  float: left;
+  position: relative;
+  min-width: 344px;
+  min-height: 490px;
+  margin: 0 50px;
+  border: 1px solid white;
+  background: black;
+}
+
+.movie:hover{
+  overflow-y: auto;
+}
+
+.movie:hover .poster {
+  opacity: 0.15;
+  transition: 1s;
+  overflow: hidden;
+}
+
+.movie:hover .review {
+  opacity: 1;
+  transition: 0.5s;
+}
+
+.movie .review {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 30px;
+  opacity: 0;
+  color: #d9d9d9;
+}
+
+.movie .review ul li {
+  list-style: none;
+  margin: 10px 0;
+}
+
+.movie .review ul li span {
+  font-size: 18px;
+  font-weight: 500;
+  color: #d62d20;
+}
+
+.review ul .title {
+  font-size: 20px;
+  font-weight: 700;
+  padding-bottom: 20px;
 }
